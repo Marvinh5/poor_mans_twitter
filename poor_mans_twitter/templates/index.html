@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid lightgray;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tweets">
+        <form v-on:submit.prevent="addTweet">
+            <fieldset>
+                <legend>Publish new Tweet:</legend>
+                Name: <input v-model="form.name" type="text" required>
+                Message: <input v-model="form.message" type="text" required>
+                <br />
+                <br /><button>Publish</button>
+            </fieldset>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Message</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="tweet in tweets">
+                    <td v-text="tweet.date"></td>
+                    <td v-text="tweet.message"></td>
+                    <td v-text="tweet.name"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    {% load static %}
+    <script src="{% static "index.js" %}"></script>
+</body>
+
+</html>
